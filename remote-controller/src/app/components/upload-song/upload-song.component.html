@@ -24,7 +24,10 @@
       <p>{{ fileToUpload.name }}</p>
     </div>
   </div>
-  <button class="bg-lime-600 text-white px-4 py-2 rounded mt-2" type="submit">
+  <button class="bg-blue-500 text-white px-4 py-2 rounded mt-2 disabled:bg-gray-300" type="submit" [disabled]="!fileToUpload" >
     Submit song
   </button>
 </form>
+<div class="error">
+    {{error}}
+</div>
