@@ -1,0 +1,6 @@
+<span
+  class="p-5 border border-teal-300 rounded-2xl truncate"
+  (click)="clicked.emit(song)"
+  [ngClass]="{ 'bg-black text-white': selected }">
+  {{song.fileName}}
+</span>

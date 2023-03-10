@@ -10,11 +10,13 @@ import { SharedModule } from './shared/shared.module';
 import { SongsListComponent } from './songs-list/songs-list.component';
 import { ControlsComponent } from './controls/controls.component';
 import { UploadSongComponent } from './components/upload-song/upload-song.component';
+import { SongComponent } from './songs-list/song/song.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SongsListComponent,
+    SongComponent,
     ControlsComponent,
     UploadSongComponent,
   ],
