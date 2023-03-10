@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, HostListener } from '@angular/core';
+import { Component, EventEmitter, HostListener, Output } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
+import { firstValueFrom } from 'rxjs';
 import { UploadService } from 'src/app/upload.service';
 
 @Component({
@@ -12,6 +13,8 @@ export class UploadSongComponent {
   dragAreaClass: string = 'dragarea';
   error: string | null = null;
   fileToUpload: File | null = null;
+
+  @Output() successfulUpload = new EventEmitter();
 
   songUploadForm = this.formBuilder.group({
     song: '',
@@ -44,11 +47,11 @@ export class UploadSongComponent {
     event.stopPropagation();
     if (event.dataTransfer.files) {
       let files: FileList = event.dataTransfer.files;
-      if(files.item(0)?.type == "audio/mpeg") {
-        this.error = ""
+      if (files.item(0)?.type == 'audio/mpeg') {
+        this.error = '';
         this.fileToUpload = files?.item(0);
       } else {
-        this.error = "Not an audio file"
+        this.error = 'Not an audio file';
       }
       console.log(this.fileToUpload);
     }
@@ -58,11 +61,11 @@ export class UploadSongComponent {
     const element = event.currentTarget as HTMLInputElement;
     let fileList: FileList | null = element.files;
     if (fileList) {
-      if(fileList.item(0)?.type == "audio/mpeg") {
-        this.error = ""
+      if (fileList.item(0)?.type == 'audio/mpeg') {
+        this.error = '';
         this.fileToUpload = fileList?.item(0);
       } else {
-        this.error = "Not an audio file"
+        this.error = 'Not an audio file';
       }
     }
   }
@@ -71,7 +74,9 @@ export class UploadSongComponent {
     const formData: FormData = new FormData();
     if (this.fileToUpload) {
       formData.append('file', this.fileToUpload, this.fileToUpload.name);
-      this.uploadService.addSong(formData);
+      firstValueFrom(this.uploadService.addSong(formData)).then((success) => {
+        this.successfulUpload.emit(success);
+      });
     }
   }
 }

@@ -15,5 +15,5 @@
 </div>
 
 <ng-template #upload>
-  <app-upload-song></app-upload-song>
+  <app-upload-song (successfulUpload)="showPlaylist = true"></app-upload-song>
 </ng-template>
