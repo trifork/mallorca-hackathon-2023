@@ -20,4 +20,7 @@ export class ControlsComponent {
   previous() {
     //this.soundManager.previous();
   }
+  handleSeekChanged(ev: any) {
+    console.log(ev);
+  }
 }

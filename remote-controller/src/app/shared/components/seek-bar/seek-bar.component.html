@@ -1,10 +1,9 @@
 <input
   #seekBar
+  class="w-full"
   type="range"
   min="0"
   [max]="songInSeconds"
   step="1"
   value="0"
-  (change)="seekChangedEvent.emit(seekBar.valueAsNumber)"
-  style="width: 248px"
-/>
+  (change)="seekChangedEvent.emit(seekBar.valueAsNumber)">
