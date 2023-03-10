@@ -1,14 +1,19 @@
 export interface PlaySongAtCommand {
   action: 'PlaySongAt';
   payload: null;
+  emittedAt: Date;
 }
+
 export interface StopCommand {
   action: 'Stop';
   payload: { at: number };
+  emittedAt: Date;
 }
+
 export interface SeekCommand {
   action: 'Seek';
   payload: { second: number };
+  emittedAt: Date;
 }
 export interface Song {
   fileName: string;
@@ -19,5 +24,5 @@ export interface PlayerState {
   playlist: Array<Song>; // unknown
   playingSong: string; // unknown
   state: 'playing' | 'paused';
-  emittedAt: number; //'Whatever timestamp we get once we call Date.now() AS A NUMBER';
+  emittedAt: Date;
 }

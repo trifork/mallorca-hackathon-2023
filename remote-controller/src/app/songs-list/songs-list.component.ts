@@ -15,6 +15,6 @@ export class SongsListComponent {
     })),
     playingSong: 'supersong2',
     state: 'playing',
-    emittedAt: 1,
+    emittedAt: new Date(),
   };
 }
