@@ -15,6 +15,12 @@ export interface SeekCommand {
   payload: { second: number };
   emittedAt: Date;
 }
+
+export interface VolumeCommand {
+  action: 'SetVolume';
+  payload: { volume: number };
+  emittedAt: Date;
+}
 export interface Song {
   fileName: string;
   durationMS: number;

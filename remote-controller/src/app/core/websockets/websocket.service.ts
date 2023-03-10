@@ -5,6 +5,7 @@ import {
   PlaySongAtCommand,
   SeekCommand,
   StopCommand,
+  VolumeCommand,
 } from 'src/app/data/types';
 
 const API_PLAYER = 'ws://localhost:4200/api/playlist';
@@ -42,6 +43,10 @@ export class WebsocketService {
   }
 
   SeekCommand(command: SeekCommand) {
+    this.SendCommand(command);
+  }
+
+  VolumeCommand(command: VolumeCommand) {
     this.SendCommand(command);
   }
 
