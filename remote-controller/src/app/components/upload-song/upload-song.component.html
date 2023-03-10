@@ -1,12 +1,21 @@
 <form [formGroup]="songUploadForm" (ngSubmit)="onSubmit()">
-  <label for="file">Choose an mp3 file</label>
-  <input
-    type="file"
-    id="file"
-    class="file-upload pl-4"
-    accept=".mp3"
-    (change)="onFileSelected($event)"
-    formControlName="song"
-  />
-  <button class="btn btn-primary" type="submit">Ta mare</button>
+  <div draggable="true" ngClass="{{ dragAreaClass }}">
+    <div class="row">
+      <div class="w-full text-center" *ngIf="!fileToUpload">
+        Drag files here
+        <a href="javascript:void(0)" (click)="file.click()" class="text-blue-600"> or click to open </a>
+        <input
+          type="file"
+          #file
+          [multiple]="false"
+          (change)="onFileSelected($event)"
+          style="display:none"
+        />
+      </div>
+    </div>
+    <div class="text-center" *ngIf="fileToUpload">
+        <p>{{ fileToUpload.name}}</p>
+    </div>
+  </div>
+  <button class="bg-lime-600 text-white px-4 py-2 rounded mt-2" type="submit">Submit song</button>
 </form>
