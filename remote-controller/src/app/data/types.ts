@@ -10,10 +10,14 @@ export interface SeekCommand {
   action: 'Seek';
   payload: { second: number };
 }
-
+export interface Song {
+  fileName: string;
+  durationMS: number;
+  src: string;
+}
 export interface PlayerState {
-  playlist: Array<any>; // unknown
-  playingSong: any; // unknown
+  playlist: Array<Song>; // unknown
+  playingSong: string; // unknown
   state: 'playing' | 'paused';
-  emittedAt: any; //'Whatever timestamp we get once we call Date.now() AS A NUMBER';
+  emittedAt: number; //'Whatever timestamp we get once we call Date.now() AS A NUMBER';
 }
