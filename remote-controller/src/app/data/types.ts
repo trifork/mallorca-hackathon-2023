@@ -28,7 +28,7 @@ export interface Song {
 }
 export interface PlayerState {
   playlist: Array<Song>;
-  playingSong: string;
+  playingSongAt: number;
   state: 'playing' | 'paused';
   emittedAt: Date;
 }
