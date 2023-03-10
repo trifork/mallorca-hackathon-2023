@@ -1,8 +1,5 @@
-import { Component } from '@angular/core';
-
-export interface Song {
-  name: string;
-}
+import { Component, HostBinding } from '@angular/core';
+import { PlayerState, Song } from '../data/types';
 
 @Component({
   selector: 'app-songs-list',
@@ -10,12 +7,14 @@ export interface Song {
   styleUrls: ['./songs-list.component.css'],
 })
 export class SongsListComponent {
-  songs: Song[] = [
-    {
-      name: 'supersong1',
-    },
-    {
-      name: 'supersong2',
-    },
-  ];
+  playerState: PlayerState = {
+    playlist: ['supersong1', 'supersong2', 'supersong2'].map((name, index) => ({
+      fileName: name,
+      durationMS: index * 1000,
+      src: `fakeSource for ${name}`,
+    })),
+    playingSong: 'supersong2',
+    state: 'playing',
+    emittedAt: 1,
+  };
 }
