@@ -1,4 +1,12 @@
 import { Component } from '@angular/core';
+import { Song } from './songs-list/songs-list.component';
+
+export interface State {
+  playlist: Song[];
+  playingSong: Song;
+  state: string;
+  emittedAt: string;
+}
 
 @Component({
   selector: 'app-root',
@@ -6,5 +14,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'remote-controller';
+  title = 'SUPER MUSIC PLAYER';
 }
