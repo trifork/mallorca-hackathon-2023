@@ -1,0 +1,11 @@
+**/.prettierignore
+**/.editorconfig
+**/.gitattributes
+**/package-lock.json
+**/.dockerignore
+**/Dockerfile*
+**/.gitignore
+**/backend/
+nginx/
+dist/
+src/app/data/graphql/generated/

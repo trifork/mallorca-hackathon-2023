@@ -1,0 +1,15 @@
+<div
+  *ngIf="playerState$|async as playerState; else loading"
+  class="flex flex-col gap-y-4 justify-center max-h-[500px] min-h-[500px]
+   overflow-y-auto rounded border border-teal-300
+   p-6 my-3">
+  <app-song
+    class="flex"
+    *ngFor="let song of playerState.playlist; let i = index"
+    [selected]="i === playerState.playingSongAt"
+    [song]="song"
+    (clicked)="onNewSongSelected(i)">
+  </app-song>
+</div>
+
+<ng-template #loading>Loading playlist…</ng-template>

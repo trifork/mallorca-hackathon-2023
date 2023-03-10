@@ -1,0 +1,21 @@
+<div class="flex flex-col w-full h-full px-40 py-5">
+  <div class="flex flex-row">
+    <h1 class="font-mono font-semibold mt-12">{{title}}</h1>
+  </div>
+  <div class="flex flex-row justify-center items-center relative">
+    <button
+      class="transition-all duration-300 absolute -top-2 -right-4 bg-white cursor-pointer rounded-full border border-teal-300 w-[50px] h-[45px]"
+      [class.rotate-45]="!showPlaylist"
+      (click)="showPlaylist = !showPlaylist">
+      +
+    </button>
+    <app-songs-list *ngIf="showPlaylist; else upload"></app-songs-list>
+  </div>
+  <ng-container *ngIf="isPlaying$|async as isPlaying">
+    <app-controls [isPlaying]="isPlaying ?? false"></app-controls>
+  </ng-container>
+</div>
+
+<ng-template #upload>
+  <app-upload-song (successfulUpload)="showPlaylist = true"></app-upload-song>
+</ng-template>
