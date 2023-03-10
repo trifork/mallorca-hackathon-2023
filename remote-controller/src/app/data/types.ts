@@ -1,12 +1,12 @@
 export interface PlaySongAtCommand {
   action: 'PlaySongAt';
-  payload: null;
+  payload: { playSongAt: number };
   emittedAt: Date;
 }
 
 export interface StopCommand {
   action: 'Stop';
-  payload: { at: number };
+  payload: null;
   emittedAt: Date;
 }
 
@@ -27,8 +27,8 @@ export interface Song {
   src: string;
 }
 export interface PlayerState {
-  playlist: Array<Song>; // unknown
-  playingSong: string; // unknown
+  playlist: Array<Song>;
+  playingSong: string;
   state: 'playing' | 'paused';
   emittedAt: Date;
 }
