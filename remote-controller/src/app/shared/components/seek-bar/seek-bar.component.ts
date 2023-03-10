@@ -6,6 +6,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./seek-bar.component.css'],
 })
 export class SeekBarComponent {
-  @Input() songInSeconds = 100;
+  @Input() max = 100;
+  @Input() value = 0;
   @Output() seekChangedEvent = new EventEmitter<number>();
 }
