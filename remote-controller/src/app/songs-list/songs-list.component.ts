@@ -1,4 +1,6 @@
 import { Component, HostBinding } from '@angular/core';
+import { tap } from 'rxjs';
+import { WebsocketService } from '../core/websockets/websocket.service';
 import { PlayerState, Song } from '../data/types';
 
 @Component({
@@ -7,14 +9,8 @@ import { PlayerState, Song } from '../data/types';
   styleUrls: ['./songs-list.component.css'],
 })
 export class SongsListComponent {
-  playerState: PlayerState = {
-    playlist: ['supersong1', 'supersong2', 'supersong2'].map((name, index) => ({
-      fileName: name,
-      durationMS: index * 1000,
-      src: `fakeSource for ${name}`,
-    })),
-    playingSong: 'supersong2',
-    state: 'playing',
-    emittedAt: new Date(),
-  };
+  playerState$ = this.websocketService.playerState$.pipe(
+    tap((data) => console.log(data)),
+  );
+  constructor(private websocketService: WebsocketService) {}
 }
