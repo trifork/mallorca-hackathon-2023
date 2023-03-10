@@ -63,7 +63,8 @@
               "browserTarget": "remote-controller:build:production"
             },
             "development": {
-              "browserTarget": "remote-controller:build:development"
+              "browserTarget": "remote-controller:build:development",
+              "proxyConfig": "src/proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"
