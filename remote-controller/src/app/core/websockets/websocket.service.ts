@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { PlayerState, PlayerCommand } from 'src/app/data/types';
 
-const API_PLAYER = 'ws://192.168.1.47:8000/api/player';
+const API_PLAYER = 'ws://localhost:4200/api/playlist';
 
 @Injectable({
   providedIn: 'root',
