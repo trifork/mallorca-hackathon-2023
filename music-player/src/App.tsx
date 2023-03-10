@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './App.css';
 import Playlist from './components/Playlist';
 import SongPlayer from './components/SongPlayer';
@@ -14,14 +14,17 @@ function App() {
     }
   }, [playerState])
 
+  const wrapperRef = useRef<HTMLDivElement>(null)
+
+
   return (
-    <div className='flex flex-row py-4 gap-4 h-screen '>
+    <div className='flex flex-row pt-4 gap-4 h-screen '>
       <div className='w-1/3 pl-4 h-full overflow-auto'>
         <Playlist playerState={playerState}></Playlist>
 
       </div>
-      <div className='flex-grow bg-blue-100'>
-        <SongPlayer currentSong={currentSong}></SongPlayer>
+      <div ref={wrapperRef} className='flex-grow'>
+        <SongPlayer currentSong={currentSong} wrapper={wrapperRef}></SongPlayer>
       </div>
     </div>
 
