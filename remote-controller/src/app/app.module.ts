@@ -17,7 +17,8 @@ import { UploadSongComponent } from './components/upload-song/upload-song.compon
     ReactiveFormsModule,
     HttpClientModule,
     CoreModule,
-  SharedModule]
+    SharedModule
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
