@@ -8,5 +8,7 @@
   <div class="row">
     <app-controls></app-controls>
   </div>
-
+  <app-seek-bar
+    [songInSeconds]="1000"
+    (seekChangedEvent)="handleSeekChanged($event)"></app-seek-bar>
 </div>

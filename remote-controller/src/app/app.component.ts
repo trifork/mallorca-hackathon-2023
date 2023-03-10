@@ -1,12 +1,5 @@
 import { Component } from '@angular/core';
-import { Song } from './songs-list/songs-list.component';
-
-export interface State {
-  playlist: Song[];
-  playingSong: Song;
-  state: string;
-  emittedAt: string;
-}
+import { WebsocketService } from './core/websockets/websocket.service';
 
 @Component({
   selector: 'app-root',
@@ -15,4 +8,14 @@ export interface State {
 })
 export class AppComponent {
   title = 'SUPER MUSIC PLAYER';
+
+  constructor(private websocket: WebsocketService) {
+    this.websocket.playerState$.subscribe((playerState) =>
+      console.log(playerState),
+    );
+  }
+
+  handleSeekChanged(event: any) {
+    console.log(event);
+  }
 }
