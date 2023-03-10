@@ -3,7 +3,7 @@
   class="w-full"
   type="range"
   min="0"
-  [max]="songInSeconds"
   step="1"
-  value="0"
+  [max]="max"
+  [value]="value"
   (change)="seekChangedEvent.emit(seekBar.valueAsNumber)">
