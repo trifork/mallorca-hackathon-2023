@@ -1,19 +1,24 @@
 export interface PlaySongAtCommand {
   action: 'PlaySongAt';
   payload: null;
+  emittedAt: Date;
 }
+
 export interface StopCommand {
   action: 'Stop';
   payload: { at: number };
+  emittedAt: Date;
 }
+
 export interface SeekCommand {
   action: 'Seek';
   payload: { second: number };
+  emittedAt: Date;
 }
 
 export interface PlayerState {
-  playlist: Array<any>; // unknown
-  playingSong: any; // unknown
+  playlist: Array<string>; // list of song urls
+  playingSong: string; // playing song url
   state: 'playing' | 'paused';
-  emittedAt: any; //'Whatever timestamp we get once we call Date.now() AS A NUMBER';
+  emittedAt: Date;
 }

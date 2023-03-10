@@ -24,8 +24,9 @@ export class WebsocketService {
 
   constructor() {
     this.websocket.onmessage = (event) => {
-      let wsMessage = JSON.parse(event.data) as PlayerState;
-      this.subject.next(wsMessage);
+      let wsMessage = JSON.parse(event.data);
+      wsMessage.emittedAt = this.deserializeDate(wsMessage.emittedAt);
+      this.subject.next(wsMessage as PlayerState);
     };
     this.websocket.onerror = (event) => {
       console.log('Websocket error', event);
@@ -33,12 +34,27 @@ export class WebsocketService {
   }
 
   PlaySongAtCommand(command: PlaySongAtCommand) {
-    this.websocket.send(JSON.stringify(command));
+    this.SendCommand(command);
   }
+
   StopCommand(command: StopCommand) {
+    this.SendCommand(command);
+  }
+
+  SeekCommand(command: SeekCommand) {
+    this.SendCommand(command);
+  }
+
+  private SendCommand(command: any) {
+    command.emittedAt = this.serializeDate(command.emittedAt);
     this.websocket.send(JSON.stringify(command));
   }
-  SeekCommand(command: SeekCommand) {
-    this.websocket.send(JSON.stringify(command));
+
+  private serializeDate(date: Date) {
+    return date.getTime();
+  }
+
+  private deserializeDate(milliseconds: number) {
+    return new Date(milliseconds);
   }
 }
