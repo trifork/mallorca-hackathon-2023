@@ -14,4 +14,8 @@ export class AppComponent {
       console.log(playerState),
     );
   }
+
+  handleSeekChanged(event: any) {
+    console.log(event);
+  }
 }
