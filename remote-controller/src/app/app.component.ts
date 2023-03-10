@@ -7,6 +7,7 @@ import { WebsocketService } from './core/websockets/websocket.service';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
+  showPlaylist = true;
   title = 'SUPER MUSIC PLAYER';
 
   constructor(private websocket: WebsocketService) {
