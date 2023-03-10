@@ -44,7 +44,12 @@ export class UploadSongComponent {
     event.stopPropagation();
     if (event.dataTransfer.files) {
       let files: FileList = event.dataTransfer.files;
-      this.fileToUpload = files.item(0);
+      if(files.item(0)?.type == "audio/mpeg") {
+        this.error = ""
+        this.fileToUpload = files?.item(0);
+      } else {
+        this.error = "Not an audio file"
+      }
       console.log(this.fileToUpload);
     }
   }
@@ -53,7 +58,12 @@ export class UploadSongComponent {
     const element = event.currentTarget as HTMLInputElement;
     let fileList: FileList | null = element.files;
     if (fileList) {
-      this.fileToUpload = fileList?.item(0);
+      if(fileList.item(0)?.type == "audio/mpeg") {
+        this.error = ""
+        this.fileToUpload = fileList?.item(0);
+      } else {
+        this.error = "Not an audio file"
+      }
     }
   }
 
