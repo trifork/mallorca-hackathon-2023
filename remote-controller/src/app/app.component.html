@@ -1,3 +1,7 @@
 <div>
   <h1 class="px-6 font-mono font-semibold mt-12">Hello patata</h1>
+  <app-seek-bar
+    [songInSeconds]="1000"
+    (seekChangedEvent)="handleSeekChanged($event)"
+  ></app-seek-bar>
 </div>
