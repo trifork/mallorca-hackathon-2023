@@ -1,6 +1,11 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { PlayerState, PlayerCommand } from 'src/app/data/types';
+import {
+  PlayerState,
+  PlaySongAtCommand,
+  SeekCommand,
+  StopCommand,
+} from 'src/app/data/types';
 
 const API_PLAYER = 'ws://localhost:4200/api/playlist';
 
@@ -23,11 +28,17 @@ export class WebsocketService {
       this.subject.next(wsMessage);
     };
     this.websocket.onerror = (event) => {
-      console.log('Morio', event);
+      console.log('Websocket error', event);
     };
   }
 
-  sendCommand(command: PlayerCommand) {
+  PlaySongAtCommand(command: PlaySongAtCommand) {
+    this.websocket.send(JSON.stringify(command));
+  }
+  StopCommand(command: StopCommand) {
+    this.websocket.send(JSON.stringify(command));
+  }
+  SeekCommand(command: SeekCommand) {
     this.websocket.send(JSON.stringify(command));
   }
 }
