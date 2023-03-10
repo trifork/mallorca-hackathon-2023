@@ -1,6 +1,14 @@
-export interface PlayerCommand {
-  action: 'PlaySongAt' | 'Stop' | 'Seek';
-  payload: null | { at: number } | { second: number };
+export interface PlaySongAtCommand {
+  action: 'PlaySongAt';
+  payload: null;
+}
+export interface StopCommand {
+  action: 'Stop';
+  payload: { at: number };
+}
+export interface SeekCommand {
+  action: 'Seek';
+  payload: { second: number };
 }
 
 export interface PlayerState {
