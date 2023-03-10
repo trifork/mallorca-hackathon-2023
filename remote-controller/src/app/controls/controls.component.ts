@@ -6,7 +6,7 @@ import { Component, HostBinding, Input } from '@angular/core';
   styleUrls: ['./controls.component.css'],
 })
 export class ControlsComponent {
-  @Input('is-playing') isPlaying: boolean = false;
+  @Input() isPlaying = false;
   @Input() song: any;
 
   togglePlayPause() {

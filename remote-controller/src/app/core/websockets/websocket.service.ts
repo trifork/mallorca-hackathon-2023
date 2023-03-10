@@ -25,7 +25,7 @@ export class WebsocketService {
 
   constructor() {
     this.websocket.onmessage = (event) => {
-      let wsMessage = JSON.parse(event.data);
+      const wsMessage = JSON.parse(event.data);
       wsMessage.emittedAt = this.deserializeDate(wsMessage.emittedAt);
       this.subject.next(wsMessage as PlayerState);
     };

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { map } from 'rxjs';
 import { WebsocketService } from './core/websockets/websocket.service';
 
 @Component({
@@ -10,11 +11,10 @@ export class AppComponent {
   showPlaylist = true;
   title = 'SUPER MUSIC PLAYER';
 
-  constructor(private websocket: WebsocketService) {
-    this.websocket.playerState$.subscribe((playerState) =>
-      console.log(playerState),
-    );
-  }
+  isPlaying$ = this.websocket.playerState$.pipe(
+    map((it) => it?.state === 'playing'),
+  );
+  constructor(private websocket: WebsocketService) {}
 
   handleSeekChanged(event: any) {
     console.log(event);

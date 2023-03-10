@@ -10,7 +10,7 @@ import { UploadService } from 'src/app/upload.service';
   styleUrls: ['./upload-song.component.css'],
 })
 export class UploadSongComponent {
-  dragAreaClass: string = 'dragarea';
+  dragAreaClass = 'dragarea';
   error: string | null = null;
   fileToUpload: File | null = null;
 
@@ -46,7 +46,7 @@ export class UploadSongComponent {
     event.preventDefault();
     event.stopPropagation();
     if (event.dataTransfer.files) {
-      let files: FileList = event.dataTransfer.files;
+      const files: FileList = event.dataTransfer.files;
       if (files.item(0)?.type == 'audio/mpeg') {
         this.error = '';
         this.fileToUpload = files?.item(0);
@@ -59,7 +59,7 @@ export class UploadSongComponent {
 
   onFileSelected(event: Event) {
     const element = event.currentTarget as HTMLInputElement;
-    let fileList: FileList | null = element.files;
+    const fileList: FileList | null = element.files;
     if (fileList) {
       if (fileList.item(0)?.type == 'audio/mpeg') {
         this.error = '';

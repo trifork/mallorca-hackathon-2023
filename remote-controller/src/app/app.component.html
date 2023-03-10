@@ -11,7 +11,9 @@
     </button>
     <app-songs-list *ngIf="showPlaylist; else upload"></app-songs-list>
   </div>
-  <app-controls></app-controls>
+  <ng-container *ngIf="isPlaying$|async as isPlaying">
+    <app-controls [isPlaying]="isPlaying ?? false"></app-controls>
+  </ng-container>
 </div>
 
 <ng-template #upload>
