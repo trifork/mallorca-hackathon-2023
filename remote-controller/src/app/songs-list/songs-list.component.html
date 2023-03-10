@@ -5,10 +5,10 @@
    p-6 my-3">
   <app-song
     class="flex"
-    *ngFor="let song of playerState.playlist"
-    [selected]="song.fileName === playerState.playingSong"
+    *ngFor="let song of playerState.playlist; let i = index"
+    [selected]="i === playerState.playingSongAt"
     [song]="song"
-    (clicked)="onNewSongSelected($event)">
+    (clicked)="onNewSongSelected(i)">
   </app-song>
 </div>
 

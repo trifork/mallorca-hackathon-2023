@@ -13,11 +13,13 @@ export class SongsListComponent {
     tap((data) => console.log(data)),
   );
   constructor(private websocketService: WebsocketService) {}
-  onNewSongSelected(song: Song) {
+  onNewSongSelected(newIndex: number) {
     this.websocketService.PlaySongAtCommand({
       action: 'PlaySongAt',
       emittedAt: new Date(),
-      payload: null,
+      payload: {
+        playSongAt: newIndex,
+      },
     });
   }
 }
