@@ -7,7 +7,7 @@ import { WebsocketService } from './core/websockets/websocket.service';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'remote-controller';
+  title = 'SUPER MUSIC PLAYER';
 
   constructor(private websocket: WebsocketService) {
     this.websocket.playerState$.subscribe((playerState) =>

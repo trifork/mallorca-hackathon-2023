@@ -1,0 +1,28 @@
+<div class="flex flex-row justify-center">
+  <a
+    href="#"
+    id="btnPrevious"
+    title
+    (click)="previous()">
+    <img src="/assets/images/prev.png">
+  </a>
+  <a
+    href="#"
+    id="btnPlayPause"
+    (click)="togglePlayPause()">
+
+    <img
+      src="/assets/images/play.png"
+      [class.hidden]="isPlaying">
+    <img
+      src="/assets/images/pause.png"
+      [class.hidden]="!isPlaying">
+  </a>
+  <a
+    href="#"
+    id="btnNextSong"
+    (click)="next()">
+    <img src="/assets/images/next.png">
+  </a>
+
+</div>

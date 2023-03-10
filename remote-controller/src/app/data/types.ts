@@ -15,10 +15,14 @@ export interface SeekCommand {
   payload: { second: number };
   emittedAt: Date;
 }
-
+export interface Song {
+  fileName: string;
+  durationMS: number;
+  src: string;
+}
 export interface PlayerState {
-  playlist: Array<string>; // list of song urls
-  playingSong: string; // playing song url
+  playlist: Array<Song>; // unknown
+  playingSong: string; // unknown
   state: 'playing' | 'paused';
   emittedAt: Date;
 }

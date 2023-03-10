@@ -7,17 +7,24 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
+import { SongsListComponent } from './songs-list/songs-list.component';
+import { ControlsComponent } from './controls/controls.component';
 import { UploadSongComponent } from './components/upload-song/upload-song.component';
 
 @NgModule({
-  declarations: [AppComponent, UploadSongComponent],
+  declarations: [
+    AppComponent,
+    SongsListComponent,
+    ControlsComponent,
+    UploadSongComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
     CoreModule,
-    SharedModule
+    SharedModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

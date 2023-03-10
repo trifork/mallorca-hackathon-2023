@@ -1,0 +1,11 @@
+<div class="flex flex-col justify-center max-h-[500px] min-h-[500px]
+   overflow-y-auto rounded border border-teal-300
+   p-6 my-3">
+  <p
+    *ngFor="let song of playerState.playlist"
+    [ngClass]="{
+      'bg-black text-white': song.fileName === playerState.playingSong
+    }">
+        {{ song.fileName }}
+    </p>
+</div>
