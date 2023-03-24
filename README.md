@@ -36,15 +36,15 @@ We are going to build a music player system that allows users to add songs to a 
 
 Payloads are **always** JSON strings except when uploading and downloading songs from the server in which case we'll be talking about `multipart/form-data` and `binary-blob`s.
 
-### POST /api/player/songs
+### POST /api/playlist/songs
 
 This endpoint adds a song to the playlist. Uploading songs with names that already exist will result in a 400. It takes a single `multipart/form-data` with a single `file` field holding `.mp3` file.
 
-### GET /api/song/{song-name}
+### GET /api/songs/{song-name}
 
 This endpoint will return a `Blob` with the contents of the song identified by it's file name or 404 if it does not exist.
 
-### WS /api/player
+### WS /api/playlist
 
 This endpoint will stablish a two-way WebSocket connection.
 
@@ -52,14 +52,15 @@ This endpoint will stablish a two-way WebSocket connection.
 The clients will be able to send commands to update the player's state. These commands have the following fields:
 
 - (**mandatory**) `action`. String enum representing what to do. (`PlaySongAt`, `Stop`, `Resume`)
-- (**nullable**) `payload`. Custom payload for the given command. Could be `{ songAt: 32 }` for the action `PlaySongAt`; `{volume: 10}` for a potential `SetVolume` action or `{second: 10}` for a `Seek` action.
+- (**nullable**) `payload`. Custom payload for the given command. it must include a field called `emittedAt`, which will contain the timestamp in milliseconds for when event is sent.
+                            Could be `{ songAt: 32, emittedAt: ... }` for the action `PlaySongAt`; `{volume: 10, emittedAt: ...}` for a potential `SetVolume` action or `{second: 10, emittedAt: ...}` for a `Seek` action.
 
 Samples:
 
 ```json
 {
     "action": "PlaySongAt",
-    "payload": { "at": 0 }
+    "payload": { "at": 0, "emittedAt": TIMESTAMP_IN_MILLIS}
 }
 ```
 
@@ -92,6 +93,7 @@ With all this said here's the data-contract for the `PlayerState`
 * (**nullable**) `playingSong`: The song name that is currently playing or null if there isn't any.
 * (**required**) `state`: A string enum with `"playing"` or `"paused"`, representing whether the player has been paused or it is currently playing.
 * (**required**) `emittedAt`: Millisecond timestamp that represents the computation instant on the server. This is important due to Player apps synchronization.
+* (**required**) `playingSongOffsetMillis`: Millisecond 
 
 Here's the data-contract for the `Song`:
 
